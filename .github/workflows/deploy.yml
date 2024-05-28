@@ -61,32 +61,7 @@ permissions:
   contents: write
 
 jobs:
-  scripts:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./scripts
-    steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v4
-      - name: Make the script files executable
-        run: chmod +x ./run_python_scripts.sh
-      - name: Install python dependencies
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.10"
-          cache: "pip" # caching pip dependencies
-      - run: pip install -r requirements.txt
-      - name: Run scripts
-        run: ./run_python_scripts.sh
-      - name: Archive production artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: save-plotting-outputs
-          path: |
-            assets/img/*.png
   deploy:
-    needs: scripts
     # available images: https://github.com/actions/runner-images#available-images
     runs-on: ubuntu-latest
     steps:
@@ -104,8 +79,19 @@ jobs:
           cache: "pip" # caching pip dependencies
       - name: Download all workflow run artifacts
         uses: actions/download-artifact@v3
+      - name: Make the script files executable
+        run: chmod +x ./run_python_scripts.sh
+        working-directory: ./scripts
+      - name: Install python dependencies
+        uses: actions/setup-python@v5
         with:
-          path: ./asets/img/
+          python-version: "3.10"
+          cache: "pip" # caching pip dependencies
+      - run: pip install -r requirements.txt
+        working-directory: ./scripts
+      - name: Run scripts
+        run: ./run_python_scripts.sh
+        working-directory: ./scripts
       - name: Update _config.yml ⚙️
         uses: fjogeleit/yaml-update-action@main
         with:
