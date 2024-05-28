@@ -67,6 +67,8 @@ jobs:
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v4
+      - name: Make the script files executable
+        run: chmod +x ./run_python_scripts.sh
       - name: Run scripts
         run: ./run_python_scripts.sh
   deploy:
