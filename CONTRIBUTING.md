@@ -14,7 +14,6 @@ Note that since [#2048](https://github.com/alshedivat/al-folio/pull/2048) al-fol
 
 We use GitHub issues to track bugs and feature requests.
 
-
 ## License
 
 By contributing to Climate Plots, you agree that your contributions will be licensed
