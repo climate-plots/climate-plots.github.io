@@ -57,7 +57,7 @@ def plot_IPO():
     plt.hlines(y=0, xmin=ipo.index.min(), xmax=ipo.index.max(),
         color='black', linestyle='--', lw=1)
 
-    plt.savefig('IPO.png', dpi=200, bbox_inches='tight')
+    plt.savefig('../assets/img/IPO.png', dpi=200, bbox_inches='tight')
 
 if __name__ == '__main__':
     plot_IPO()
