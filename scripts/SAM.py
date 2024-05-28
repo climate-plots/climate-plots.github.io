@@ -7,7 +7,7 @@ import pandas as pd
 
 # Southern Annular Mode (SAM) index
 
-def plot_SAM():
+def plot_SAM_monthly():
 
     # specify url
     fname_sam = pooch.retrieve(
@@ -35,12 +35,45 @@ def plot_SAM():
     plt.text('1990-01-01', -8, 'Climate-Plots.github.io',
         fontsize=12, color='black')
 
-    plt.title('Southern Annular Mode (SAM) index')
+    plt.title('Southern Annular Mode (SAM) index, monthly')
 
     plt.hlines(y=0, xmin=sam.index.min(), xmax=sam.index.max(),
         color='black', linestyle='--', lw=1)
 
-    plt.savefig('../assets/img/SAM.png', dpi=200, bbox_inches='tight')
+    plt.savefig('../assets/img/SAM_monthly.png', dpi=200, bbox_inches='tight')
+
+
+def plot_SAM_annual():
+
+    # specify url
+    fname_sam = pooch.retrieve(
+        url="http://www.nerc-bas.ac.uk/public/icd/gjma/newsam.1957.2007.seas.txt",
+        known_hash=None,
+    )
+
+    # download and read data
+
+    sam = pd.read_csv(fname_sam, skiprows=1, delim_whitespace=True,
+        names=['Year', 'ANN', 'AUT', 'WIN', 'SPR', 'SUM'])
+
+    sam = sam.set_index('Year')
+    sam = sam.rename(columns={'value':'Southern Annular Mode'})
+
+    plt.figure(figsize=(10,5))
+    ax = plt.gca()
+
+    sam['ANN'].plot(marker='o', ax=ax, legend=False)
+
+    plt.text(1990, -4, 'Climate-Plots.github.io',
+        fontsize=12, color='black')
+
+    plt.title('Southern Annular Mode (SAM) index, annual')
+
+    plt.hlines(y=0, xmin=sam.index.min(), xmax=sam.index.max(),
+        color='black', linestyle='--', lw=1)
+
+    plt.savefig('../assets/img/SAM_annual.png', dpi=200, bbox_inches='tight')
 
 if __name__ == '__main__':
-    plot_SAM()
+    plot_SAM_monthly()
+    plot_SAM_annual()
