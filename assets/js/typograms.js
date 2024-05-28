@@ -6,7 +6,10 @@ const ratio = 2;
 function grid(width, height) {
   const result = document.createElementNS("http://www.w3.org/2000/svg", "g");
 
-  const vertical = document.createElementNS("http://www.w3.org/2000/svg", "line");
+  const vertical = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "line",
+  );
   vertical.setAttribute("x1", 15);
   vertical.setAttribute("y1", 0);
   vertical.setAttribute("x2", 15);
@@ -14,7 +17,10 @@ function grid(width, height) {
   vertical.setAttribute("class", "center");
   //result.appendChild(vertical);
 
-  const horizontal = document.createElementNS("http://www.w3.org/2000/svg", "line");
+  const horizontal = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "line",
+  );
   horizontal.setAttribute("x1", 0);
   horizontal.setAttribute("y1", 30);
   horizontal.setAttribute("x2", 30);
@@ -47,7 +53,16 @@ function grid(width, height) {
 
 const glyphs = {};
 
-glyphs["|"] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, topLeft]) => {
+glyphs["|"] = ([
+  top,
+  right,
+  bottom,
+  left,
+  topRight,
+  bottomRight,
+  bottomLeft,
+  topLeft,
+]) => {
   const result = document.createElementNS("http://www.w3.org/2000/svg", "g");
   if (right == "_") {
     const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
@@ -99,12 +114,21 @@ glyphs["|"] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, top
       bottomRight == "\\", // bottomRight
       bottomLeft == "/", // bottomLeft
       topLeft == "\\", // topLeft
-    ])
+    ]),
   );
   return result;
 };
 
-glyphs["-"] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, topLeft]) => {
+glyphs["-"] = ([
+  top,
+  right,
+  bottom,
+  left,
+  topRight,
+  bottomRight,
+  bottomLeft,
+  topLeft,
+]) => {
   return cross([
     ["|"].includes(top), // top
     true, // right
@@ -117,7 +141,16 @@ glyphs["-"] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, top
   ]);
 };
 
-glyphs["~"] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, topLeft]) => {
+glyphs["~"] = ([
+  top,
+  right,
+  bottom,
+  left,
+  topRight,
+  bottomRight,
+  bottomLeft,
+  topLeft,
+]) => {
   const result = document.createElementNS("http://www.w3.org/2000/svg", "g");
   const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
   line.setAttribute("x1", "9");
@@ -135,7 +168,16 @@ glyphs["_"] = (around) => {
   return line;
 };
 
-glyphs[":"] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, topLeft]) => {
+glyphs[":"] = ([
+  top,
+  right,
+  bottom,
+  left,
+  topRight,
+  bottomRight,
+  bottomLeft,
+  topLeft,
+]) => {
   const result = document.createElementNS("http://www.w3.org/2000/svg", "g");
   const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
   line.setAttribute("x1", "15");
@@ -185,9 +227,21 @@ glyphs["="] = (around) => {
   return result;
 };
 
-glyphs["*"] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, topLeft]) => {
+glyphs["*"] = ([
+  top,
+  right,
+  bottom,
+  left,
+  topRight,
+  bottomRight,
+  bottomLeft,
+  topLeft,
+]) => {
   const result = document.createElementNS("http://www.w3.org/2000/svg", "g");
-  const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+  const circle = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "circle",
+  );
   circle.setAttribute("cx", "0");
   circle.setAttribute("cy", "0");
   circle.setAttribute("r", "21");
@@ -205,15 +259,27 @@ glyphs["*"] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, top
       ["\\"].includes(bottomRight),
       ["/"].includes(bottomLeft),
       ["\\"].includes(topLeft),
-    ])
+    ]),
   );
 
   return result;
 };
 
-glyphs["o"] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, topLeft]) => {
+glyphs["o"] = ([
+  top,
+  right,
+  bottom,
+  left,
+  topRight,
+  bottomRight,
+  bottomLeft,
+  topLeft,
+]) => {
   const result = document.createElementNS("http://www.w3.org/2000/svg", "g");
-  const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+  const circle = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "circle",
+  );
   circle.setAttribute("cx", "0");
   circle.setAttribute("cy", "0");
   circle.setAttribute("r", "18");
@@ -236,7 +302,10 @@ glyphs["o"] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, top
 
   result.appendChild(connectors);
 
-  const inner = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+  const inner = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "circle",
+  );
   inner.setAttribute("cx", "0");
   inner.setAttribute("cy", "0");
   inner.setAttribute("r", "15");
@@ -249,7 +318,8 @@ glyphs["o"] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, top
 };
 
 glyphs["/"] = (around) => {
-  const [top, right, bottom, left, topRight, bottomRight, bottomLeft, topLeft] = around;
+  const [top, right, bottom, left, topRight, bottomRight, bottomLeft, topLeft] =
+    around;
   const result = document.createElementNS("http://www.w3.org/2000/svg", "g");
   result.appendChild(
     cross([
@@ -261,7 +331,7 @@ glyphs["/"] = (around) => {
       false, // bottomRight
       true, // bottomLeft
       false, // topLeft
-    ])
+    ]),
   );
   if (right == "\\") {
     const tip = cross([
@@ -303,7 +373,8 @@ glyphs["/"] = (around) => {
 };
 
 glyphs["\\"] = (around) => {
-  const [top, right, bottom, left, topRight, bottomRight, bottomLeft, topLeft] = around;
+  const [top, right, bottom, left, topRight, bottomRight, bottomLeft, topLeft] =
+    around;
   const result = document.createElementNS("http://www.w3.org/2000/svg", "g");
   result.appendChild(
     cross([
@@ -315,7 +386,7 @@ glyphs["\\"] = (around) => {
       true, // bottomRight
       false, // bottomLeft
       true, // topLeft
-    ])
+    ]),
   );
   if (left == "/") {
     const tip = cross([
@@ -347,9 +418,21 @@ glyphs["\\"] = (around) => {
   return result;
 };
 
-glyphs["#"] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, topLeft]) => {
+glyphs["#"] = ([
+  top,
+  right,
+  bottom,
+  left,
+  topRight,
+  bottomRight,
+  bottomLeft,
+  topLeft,
+]) => {
   const result = document.createElementNS("http://www.w3.org/2000/svg", "g");
-  const polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+  const polygon = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "polygon",
+  );
   const points = [
     [0, 0],
     [42, 0],
@@ -370,13 +453,22 @@ glyphs["#"] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, top
       ["\\"].includes(bottomRight),
       ["/"].includes(bottomLeft),
       ["\\"].includes(topLeft),
-    ])
+    ]),
   );
 
   return result;
 };
 
-glyphs["+"] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, topLeft]) => {
+glyphs["+"] = ([
+  top,
+  right,
+  bottom,
+  left,
+  topRight,
+  bottomRight,
+  bottomLeft,
+  topLeft,
+]) => {
   const result = document.createElementNS("http://www.w3.org/2000/svg", "g");
   const r = ["*", "#", "-", "+", "~", ">", ".", "'", "`"].includes(right);
   const l = ["*", "#", "-", "+", "~", "<", ".", "'", "`"].includes(left);
@@ -392,7 +484,10 @@ glyphs["+"] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, top
 
   // center
   if ((l || r) && (b || t)) {
-    const center = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+    const center = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "polygon",
+    );
     center.setAttribute("points", "0,0 6,0 6,6 0,6");
     center.setAttribute("transform", "translate(-3 -3) translate(15 27)");
     result.appendChild(center);
@@ -477,11 +572,23 @@ glyphs["+"] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, top
   return result;
 };
 
-glyphs["."] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, topLeft]) => {
+glyphs["."] = ([
+  top,
+  right,
+  bottom,
+  left,
+  topRight,
+  bottomRight,
+  bottomLeft,
+  topLeft,
+]) => {
   const result = document.createElementNS("http://www.w3.org/2000/svg", "g");
 
   // top-right
-  if ((right == "-" || right == "+") && (bottom == "|" || bottom == "'" || bottom == "`" || bottom == "+")) {
+  if (
+    (right == "-" || right == "+") &&
+    (bottom == "|" || bottom == "'" || bottom == "`" || bottom == "+")
+  ) {
     const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
     path.setAttribute(
       "d",
@@ -492,13 +599,16 @@ glyphs["."] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, top
         L 18 54
         L 18 42
         A 12 12, 0, 0, 1, 30 30
-        Z`
+        Z`,
     );
     result.appendChild(path);
   }
 
   // top-left
-  if ((left == "-" || left == "+") && (bottom == "|" || bottom == "'" || bottom == "`" || bottom == "+")) {
+  if (
+    (left == "-" || left == "+") &&
+    (bottom == "|" || bottom == "'" || bottom == "`" || bottom == "+")
+  ) {
     const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
     path.setAttribute(
       "d",
@@ -509,13 +619,16 @@ glyphs["."] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, top
         L 12 54
         L 12 42
         A 12 12, 0, 0, 0, 0 30
-        Z`
+        Z`,
     );
     result.appendChild(path);
   }
 
   // top-right
-  if ((right == "-" || right == "+") && (top == "|" || top == "." || top == "+")) {
+  if (
+    (right == "-" || right == "+") &&
+    (top == "|" || top == "." || top == "+")
+  ) {
     const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
     path.setAttribute(
       "d",
@@ -526,13 +639,16 @@ glyphs["."] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, top
         L 18 0
         L 18 12
         A 12 12, 0, 0, 0, 30 24
-        Z`
+        Z`,
     );
     result.appendChild(path);
   }
 
   // bottom-left
-  if ((left == "-" || left == "+") && (top == "|" || top == "." || top == "+")) {
+  if (
+    (left == "-" || left == "+") &&
+    (top == "|" || top == "." || top == "+")
+  ) {
     const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
     path.setAttribute(
       "d",
@@ -543,7 +659,7 @@ glyphs["."] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, top
         L 12 0
         L 12 12
         A 12 12, 0, 0, 1, 0 24
-        Z`
+        Z`,
     );
     result.appendChild(path);
   }
@@ -560,7 +676,7 @@ glyphs["."] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, top
         L 24 15
         L 24 18
         A 6 6, 0, 0, 0, 30 24
-        Z`
+        Z`,
     );
     result.appendChild(path);
     const line = cross([
@@ -573,7 +689,10 @@ glyphs["."] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, top
       false, // bottomLeft
       false, // topLeft
     ]);
-    line.setAttribute("clip-path", "polygon(15px -10px, 30px -10px, 30px 30px, 2px 15px)");
+    line.setAttribute(
+      "clip-path",
+      "polygon(15px -10px, 30px -10px, 30px 30px, 2px 15px)",
+    );
     result.appendChild(line);
   }
 
@@ -587,7 +706,7 @@ glyphs["."] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, top
         A 60 60, 0, 0, 0, 30 30
         L 30 24
         A 60 60, 0, 0, 1, 0 -6
-        Z`
+        Z`,
     );
     result.appendChild(path);
   }
@@ -602,7 +721,7 @@ glyphs["."] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, top
         A 60 60, 0, 0, 0, 33 0
         L 30 -6
         A 60 60, 0, 0, 1, 0 24
-        Z`
+        Z`,
     );
     result.appendChild(path);
   }
@@ -619,7 +738,7 @@ glyphs["."] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, top
         L 6 15
         L 6 18
         A 6 6, 0, 0, 1, 0 24
-        Z`
+        Z`,
     );
     result.appendChild(path);
     const line = cross([
@@ -646,7 +765,7 @@ glyphs["."] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, top
         A 120 120, 0, 0, 1, 30 -6
         L 37 -6
         A 120 120, 0, 0, 0, 18 54
-        Z`
+        Z`,
     );
     result.appendChild(path);
   }
@@ -661,7 +780,7 @@ glyphs["."] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, top
         A 120 120, 0, 0, 1, 12 0
         L 18 0
         A 120 120, 0, 0, 0, 37 60
-        Z`
+        Z`,
     );
     result.appendChild(path);
   }
@@ -676,7 +795,7 @@ glyphs["."] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, top
         A 120 120, 0, 0, 0, 18 0
         L 12 0
         A 120 120, 0, 0, 1, -7 60
-        Z`
+        Z`,
     );
     result.appendChild(path);
   }
@@ -691,7 +810,7 @@ glyphs["."] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, top
         A 120 120, 0, 0, 0, -7 -6
         L 0 -6
         A 120 120, 0, 0, 1, 18 54
-        Z`
+        Z`,
     );
     result.appendChild(path);
   }
@@ -706,7 +825,7 @@ glyphs["."] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, top
         A 42 42, 0, 0, 1, 30 24
         L 30 30
         A 42 42, 0, 0, 0, 6 48
-        Z`
+        Z`,
     );
     result.appendChild(path);
     const line = cross([
@@ -733,7 +852,7 @@ glyphs["."] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, top
         A 42 42, 0, 0, 1, 30 48
         L 24 48
         A 42 42, 0, 0, 0, 0 30
-        Z`
+        Z`,
     );
 
     result.appendChild(path);
@@ -761,7 +880,7 @@ glyphs["."] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, top
         A 12 12, 0, 0, 1, 12 39
         L 6 39
         A 6 6, 0, 0, 0, 0 30
-        Z`
+        Z`,
     );
     result.appendChild(path);
     const line = cross([
@@ -788,7 +907,7 @@ glyphs["."] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, top
         A 12 12, 0, 0, 0, 18 39
         L 24 39
         A 6 6, 0, 0, 1, 30 30
-        Z`
+        Z`,
     );
     result.appendChild(path);
     const line = cross([
@@ -815,7 +934,7 @@ glyphs["."] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, top
         A 15 15, 0, 0, 1, 27 42
         L 25 51
         A 9 9, 0, 0, 0, 5 51
-        Z`
+        Z`,
     );
     result.appendChild(path);
     const line = cross([
@@ -842,7 +961,7 @@ glyphs["."] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, top
         A 15 15, 0, 0, 0, 27 12
         L 22 9
         A 9 9, 0, 0, 1, 8 9
-        Z`
+        Z`,
     );
     result.appendChild(path);
     const line = cross([
@@ -869,7 +988,7 @@ glyphs["."] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, top
         A 30 30, 0, 0, 0, 22 45
         L 28 45
         A 30 30, 0, 0, 1, 28 9
-        Z`
+        Z`,
     );
     result.appendChild(path);
     const line = cross([
@@ -896,7 +1015,7 @@ glyphs["."] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, top
         A 30 30, 0, 0, 1, 8 45
         L 2 45
         A 30 30, 0, 0, 0, 2 9
-        Z`
+        Z`,
     );
     result.appendChild(path);
     const line = cross([
@@ -934,9 +1053,21 @@ for (const [key, value] of Object.entries(alias)) {
   };
 }
 
-glyphs[">"] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, topLeft]) => {
+glyphs[">"] = ([
+  top,
+  right,
+  bottom,
+  left,
+  topRight,
+  bottomRight,
+  bottomLeft,
+  topLeft,
+]) => {
   const result = document.createElementNS("http://www.w3.org/2000/svg", "g");
-  const arrow = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+  const arrow = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "polygon",
+  );
   arrow.setAttribute("points", "0,0 42,18 0,36");
   let reach = 0;
   if (right == "*" || right == "o" || right == "#") {
@@ -945,7 +1076,10 @@ glyphs[">"] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, top
   arrow.setAttribute("transform", `translate(${reach} 9)`);
   result.appendChild(arrow);
   return result;
-  const center = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+  const center = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "polygon",
+  );
   center.setAttribute("points", "-3,0 6,0 6,6 -3,6");
   center.setAttribute("transform", "translate(15 24)");
   result.appendChild(center);
@@ -959,20 +1093,35 @@ glyphs[">"] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, top
       false, // bottomRight
       ["/"].includes(bottomLeft), // bottomLeft
       ["\\"].includes(topLeft), // topLeft
-    ])
+    ]),
   );
   return result;
 };
 
-glyphs["<"] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, topLeft]) => {
+glyphs["<"] = ([
+  top,
+  right,
+  bottom,
+  left,
+  topRight,
+  bottomRight,
+  bottomLeft,
+  topLeft,
+]) => {
   const result = document.createElementNS("http://www.w3.org/2000/svg", "g");
-  const arrow = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+  const arrow = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "polygon",
+  );
   arrow.setAttribute("points", "0,0 42,18 0,36");
   let reach = 30;
   if (left == "*" || left == "o" || left == "#") {
     reach += 18;
   }
-  arrow.setAttribute("transform", `translate(${reach} 9) translate(0 36) rotate(180)`);
+  arrow.setAttribute(
+    "transform",
+    `translate(${reach} 9) translate(0 36) rotate(180)`,
+  );
   result.appendChild(arrow);
   return result;
   //const center = document.createElementNS(
@@ -990,14 +1139,26 @@ glyphs["<"] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, top
       ["\\"].includes(bottomRight), // bottomRight
       false, // bottomLeft
       false, // topLeft
-    ])
+    ]),
   );
   return result;
 };
 
-glyphs["v"] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, topLeft]) => {
+glyphs["v"] = ([
+  top,
+  right,
+  bottom,
+  left,
+  topRight,
+  bottomRight,
+  bottomLeft,
+  topLeft,
+]) => {
   const result = document.createElementNS("http://www.w3.org/2000/svg", "g");
-  const arrow = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+  const arrow = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "polygon",
+  );
   arrow.setAttribute("points", "0,0 42,18 0,36");
   let reach = 36;
   if (bottom == " ") {
@@ -1008,9 +1169,15 @@ glyphs["v"] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, top
     reach -= 18;
   }
   if (topRight == "/") {
-    arrow.setAttribute("transform", `translate(-36 33) rotate(${90 + 22.5}, 42, 18)`);
+    arrow.setAttribute(
+      "transform",
+      `translate(-36 33) rotate(${90 + 22.5}, 42, 18)`,
+    );
   } else if (topLeft == "\\") {
-    arrow.setAttribute("transform", `translate(-18 33) rotate(${90 - 22.5}, 42, 18)`);
+    arrow.setAttribute(
+      "transform",
+      `translate(-18 33) rotate(${90 - 22.5}, 42, 18)`,
+    );
   } else {
     arrow.setAttribute("transform", `translate(33 ${reach}) rotate(90)`);
   }
@@ -1025,23 +1192,41 @@ glyphs["v"] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, top
       false, // bottomRight
       false, // bottomLeft
       ["\\"].includes(topLeft), // topLeft
-    ])
+    ]),
   );
   return result;
 };
 
-glyphs["^"] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, topLeft]) => {
+glyphs["^"] = ([
+  top,
+  right,
+  bottom,
+  left,
+  topRight,
+  bottomRight,
+  bottomLeft,
+  topLeft,
+]) => {
   const result = document.createElementNS("http://www.w3.org/2000/svg", "g");
-  const arrow = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+  const arrow = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "polygon",
+  );
   arrow.setAttribute("points", "0,0 42,18 0,36");
   let reach = 42;
   if (top == "-") {
     reach -= 15;
   }
   if (bottomLeft == "/") {
-    arrow.setAttribute("transform", `translate(-18 -15) rotate(${-45 - 22.5}, 42, 18)`);
+    arrow.setAttribute(
+      "transform",
+      `translate(-18 -15) rotate(${-45 - 22.5}, 42, 18)`,
+    );
   } else if (bottomRight == "\\") {
-    arrow.setAttribute("transform", `translate(-36 -15) rotate(${-90 - 22.5}, 42, 18)`);
+    arrow.setAttribute(
+      "transform",
+      `translate(-36 -15) rotate(${-90 - 22.5}, 42, 18)`,
+    );
   } else {
     arrow.setAttribute("transform", `translate(-3 ${reach}) rotate(-90)`);
   }
@@ -1056,12 +1241,21 @@ glyphs["^"] = ([top, right, bottom, left, topRight, bottomRight, bottomLeft, top
       ["\\"].includes(bottomRight), // bottomRight
       ["/"].includes(bottomLeft), // bottomLeft
       false, // topLeft
-    ])
+    ]),
   );
   return result;
 };
 
-function cross([top, right, bottom, left, topRight, bottomRight, bottomLeft, topLeft]) {
+function cross([
+  top,
+  right,
+  bottom,
+  left,
+  topRight,
+  bottomRight,
+  bottomLeft,
+  topLeft,
+]) {
   const result = document.createElementNS("http://www.w3.org/2000/svg", "g");
   if (top) {
     // {
@@ -1107,7 +1301,10 @@ function cross([top, right, bottom, left, topRight, bottomRight, bottomLeft, top
     result.appendChild(line);
   }
 
-  const diagonal = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+  const diagonal = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "polygon",
+  );
 
   diagonal.setAttribute(
     "points",
@@ -1118,7 +1315,7 @@ function cross([top, right, bottom, left, topRight, bottomRight, bottomLeft, top
       [0, 3],
     ]
       .map(([x, y]) => `${x},${y}`)
-      .join(" ")
+      .join(" "),
   );
 
   if (topRight) {
@@ -1190,7 +1387,10 @@ function text(char, reserved) {
     [15, 24],
     //[1.5, 1.5 * ratio]
   ];
-  result.setAttribute("transform", translation.map(([x, y]) => `translate(${x}, ${y})`).join(" "));
+  result.setAttribute(
+    "transform",
+    translation.map(([x, y]) => `translate(${x}, ${y})`).join(" "),
+  );
   g.appendChild(result);
   return g;
 }
@@ -1222,7 +1422,8 @@ function render(diagram) {
       if (char.match(/[A-Za-z0-9]/)) {
         const [, right, , left] = neighbors;
         // We special case "v", which is a down arrow, and also a text character.
-        str = str || left.match(/[A-Za-uw-z0-9]/) || right.match(/[A-Za-uw-z0-9]/);
+        str =
+          str || left.match(/[A-Za-uw-z0-9]/) || right.match(/[A-Za-uw-z0-9]/);
       }
 
       reserved = reserved && !str;
@@ -1263,7 +1464,12 @@ function create(source, zoom, debug) {
   svg.setAttribute("debug", debug);
   const padding = 0;
 
-  svg.setAttribute("viewBox", `${-padding} ${-padding} ${width * 30 + 2 * padding} ${height * 54 + 2 * padding}`);
+  svg.setAttribute(
+    "viewBox",
+    `${-padding} ${-padding} ${width * 30 + 2 * padding} ${
+      height * 54 + 2 * padding
+    }`,
+  );
   svg.setAttribute("class", "debug");
   svg.appendChild(render(diagram));
 

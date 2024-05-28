@@ -1,0 +1,5 @@
+numpy
+pooch
+matplotlib
+xarray
+pandas
