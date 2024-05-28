@@ -78,6 +78,7 @@ jobs:
       - name: Run scripts
         run: ./run_python_scripts.sh
   deploy:
+    needs: scripts
     # available images: https://github.com/actions/runner-images#available-images
     runs-on: ubuntu-latest
     steps:
