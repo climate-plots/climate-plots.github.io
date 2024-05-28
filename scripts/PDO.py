@@ -38,7 +38,7 @@ def plot_IPO():
        'Oct', 'Nov', 'Dec'])
 
     # convert time to datetime
-    ipo = pd.melt(ipo, id_vars=['Year'], var_name=['Month'])
+    ipo = pd.melt(ipo, id_vars=['Year'], var_name='Month')
     ipo['Date'] = pd.to_datetime(ipo['Year'].astype(str) + '-' + ipo['Month'].astype(str))
     ipo = ipo.sort_values(by=['Date']).drop(columns=['Month', 'Year']).reset_index(drop=['index'])
     ipo = ipo.set_index('Date')
