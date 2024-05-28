@@ -77,6 +77,12 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Run scripts
         run: ./run_python_scripts.sh
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: save-plotting-outputs
+          path: |
+            assets/img/*.png
   deploy:
     needs: scripts
     # available images: https://github.com/actions/runner-images#available-images
@@ -89,6 +95,10 @@ jobs:
         with:
           ruby-version: "3.2.2"
           bundler-cache: true
+      - name: Download all workflow run artifacts
+        uses: actions/download-artifact@v3
+        with:
+          path: ./asets/img/
       - name: Update _config.yml ⚙️
         uses: fjogeleit/yaml-update-action@main
         with:
