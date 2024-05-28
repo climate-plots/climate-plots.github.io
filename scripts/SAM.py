@@ -21,7 +21,7 @@ def plot_SAM_monthly():
         names=['Year', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep',
            'Oct', 'Nov', 'Dec'])
 
-    sam = pd.melt(sam, id_vars=['Year'], var_name=['Month'])
+    sam = pd.melt(sam, id_vars=['Year'], var_name='Month')
     sam['Date'] = pd.to_datetime(sam['Year'].astype(str) + '-' + sam['Month'].astype(str))
     sam = sam.sort_values(by=['Date']).drop(columns=['Month', 'Year']).reset_index(drop=['index'])
     sam = sam.set_index('Date')
