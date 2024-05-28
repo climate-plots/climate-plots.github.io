@@ -1,6 +1,6 @@
-# Contributing to al-folio
+# Contributing to Climate Plots
 
-Thank you for considering contributing to al-folio!
+Thank you for considering contributing to Climate Plots!
 
 ## Pull Requests
 
@@ -13,16 +13,9 @@ Note that since [#2048](https://github.com/alshedivat/al-folio/pull/2048) al-fol
 ## Issues
 
 We use GitHub issues to track bugs and feature requests.
-Before submitting an issue, please make sure:
 
-1. You have read [the FAQ section](FAQ.md) of the README and your question is NOT addressed there.
-2. You have done your best to ensure that your issue is NOT a duplicate of one of [the previous issues](https://github.com/alshedivat/al-folio/issues).
-3. Your issue is either a bug (unexpected/undesirable behavior) or a feature request.
-   If it is just a question, please ask it in the [Discussions](https://github.com/alshedivat/al-folio/discussions) forum.
-
-When submitting an issue, please make sure to use the appropriate template.
 
 ## License
 
-By contributing to al-folio, you agree that your contributions will be licensed
+By contributing to Climate Plots, you agree that your contributions will be licensed
 under the LICENSE file in the root directory of the source tree.
