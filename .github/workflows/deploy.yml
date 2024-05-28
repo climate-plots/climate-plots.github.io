@@ -61,11 +61,12 @@ permissions:
 jobs:
   scripts:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./scripts
     steps:
       - name: Setup
-        run: |
-          cd scripts
-          bash run_python_scripts.sh
+        run: ./run_python_scripts.sh
   deploy:
     # available images: https://github.com/actions/runner-images#available-images
     runs-on: ubuntu-latest
