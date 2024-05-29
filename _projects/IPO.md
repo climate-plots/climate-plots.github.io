@@ -8,7 +8,7 @@ category: atmosphere
 related_publications: true
 ---
 
-The Interdecadal Pacific Oscillation is 
+The Interdecadal Pacific Oscillation is
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
