@@ -4,4 +4,3 @@ matplotlib
 xarray
 pandas <= 2.2.0
 datetime
-calendar
