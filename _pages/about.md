@@ -17,3 +17,5 @@ social: true # includes social icons at the bottom of the page
 ---
 
 A collection of beautiful plots showing up to date information about the climate.
+
+The code to make this work is hosted on [GitHub](https://github.com/climate-plots/climate-plots.github.io).
