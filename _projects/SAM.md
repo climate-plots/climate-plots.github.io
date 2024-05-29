@@ -2,7 +2,7 @@
 layout: page
 title: Southern Annular Mode
 description:
-img: assets/img/SAM_monthly.jpg
+img: assets/img/SAM_monthly.png
 importance: 1
 category: atmosphere
 related_publications: true
