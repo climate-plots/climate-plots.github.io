@@ -9,23 +9,6 @@ import pandas as pd
 
 def plot_IPO():
 
-
-    # fname_pdo = pooch.retrieve(
-    #     url="https://www.ncei.noaa.gov/pub/data/cmb/ersst/v5/index/ersst.v5.pdo.dat",
-    #     known_hash=None,
-    # )
-    # pdo = pd.read_csv(fname_pdo, skiprows=1, delim_whitespace=True)
-    # column_names = pdo.columns
-    # print(column_names)
-
-    # pdo = pd.melt(pdo, id_vars=['Year'], var_name=['Month'])
-    # pdo['Date'] = pd.to_datetime(pdo['Year'].astype(str) + '-' + pdo['Month'].astype(str))
-    # pdo = pdo.sort_values(by=['Date']).drop(columns=['Month', 'Year']).reset_index(drop=['index'])
-    # pdo = pdo.set_index('Date')
-    # pdo = pdo.rename(columns={'value':'PDO'})
-
-
-
     # specify url
     fname_ipo = pooch.retrieve(
         url="https://psl.noaa.gov/data/timeseries/IPOTPI/tpi.timeseries.ersstv5.data",
