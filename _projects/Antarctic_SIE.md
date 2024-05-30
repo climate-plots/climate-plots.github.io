@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Antarctic sea ice extence
+title: Antarctic sea ice extent
 description:
 img: assets/img/Ant_SIE_anom.png
 importance: 1
