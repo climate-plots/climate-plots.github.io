@@ -1,0 +1,26 @@
+name: Post a pretty graph to BlueSky
+
+on:
+  workflow_run:
+    workflows: [Deploy site]
+    types: [completed]
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      # You must checkout resources
+      - uses: actions/checkout@v3
+
+      - name: Pick a graph
+        run: python pick_a_graph.py
+        working-directory: ./scripts
+        id: pick_graph
+
+      - uses: myConsciousness/bluesky-post@v5
+        with:
+          text: ${{ steps.pick_graph.outputs.text }}
+          media: ${{ steps.pick_graph.outputs.image_path }}
+          media-alt: ${{ steps.pick_graph.outputs.text }}
+          identifier: ${{ secrets.BSKY_IDENTIFIER }}
+          password: ${{ secrets.BSKY_PASSWORD }}
