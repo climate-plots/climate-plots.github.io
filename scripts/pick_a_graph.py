@@ -23,7 +23,7 @@ possible_graphs = [{'name':'AMO', 'image_path':'assets/img/AMO.png',
                         'text':'Antarctic sea ice extent anomalies, by year'},
                    {'name':'IPO', 'image_path':'assets/img/IPO.png',
                         'text':'The Interdecadal Pacific Oscillation'},
-                   {'name':'SAM_annual', 'image_path':'assets/img/SAM_annual.png'
+                   {'name':'SAM_annual', 'image_path':'assets/img/SAM_annual.png',
                         'text':'The Southern Annular Mode, annual average'}]
 
 
