@@ -32,10 +32,10 @@ def pick_a_graph():
     graph = np.randint(upper_lim)
 
     set_output(name='image_path',
-                possible_graphs[graph]['image_path'])
+                value=possible_graphs[graph]['image_path'])
 
     set_output(name='text',
-            possible_graphs[graph]['text'])
+                value=possible_graphs[graph]['text'])
 
 if __name__ == '__main__':
     pick_a_graph()
