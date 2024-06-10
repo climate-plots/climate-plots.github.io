@@ -12,6 +12,14 @@ jobs:
       # You must checkout resources
       - uses: actions/checkout@v3
 
+      - name: Install python dependencies
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          cache: "pip" # caching pip dependencies
+      - run: pip install -r requirements.txt
+        working-directory: ./scripts
+
       - name: Pick a graph
         run: python pick_a_graph.py
         working-directory: ./scripts
