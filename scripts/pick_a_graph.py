@@ -1,5 +1,6 @@
 import uuid
 import numpy as np
+import os
 
 def set_output(name, value):
     with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
