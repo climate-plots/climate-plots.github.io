@@ -29,7 +29,7 @@ possible_graphs = [{'name':'AMO', 'image_path':'assets/img/AMO.png',
 
 def pick_a_graph():
     upper_lim = len(possible_graphs)
-    graph = np.randint(upper_lim)
+    graph = np.random.randint(upper_lim)
 
     set_output(name='image_path',
                 value=possible_graphs[graph]['image_path'])
