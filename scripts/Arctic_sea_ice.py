@@ -8,12 +8,12 @@ import datetime
 import calendar
 
 
-def plot_Ant_SIE():
+def plot_Arctic_SIE():
 
     today = datetime.date.today()
 
     fname_sie_S = pooch.retrieve(
-        url="ftp://sidads.colorado.edu/pub/DATASETS/NOAA/G02135/south/daily/data/S_seaice_extent_daily_v3.0.csv",
+        url="ftp://sidads.colorado.edu/pub/DATASETS/NOAA/G02135/north/daily/data/N_seaice_extent_daily_v3.0.csv",
         known_hash=None,
         path='./'
     )
@@ -73,15 +73,15 @@ def plot_Ant_SIE():
     plt.ylabel('Sea Ice Extent\n(millions of square kilometres)')
     plt.xticks(np.linspace(15,380,13)[:-1], calendar.month_name[1:], rotation=90)
     plt.xlim(-10,376)
-    plt.savefig('../assets/img/Ant_SIE_by_year.png', bbox_inches='tight', dpi=200)
+    plt.savefig('../assets/img/Arctic_SIE_by_year.png', bbox_inches='tight', dpi=200)
 
     # plot daily climatology
     ########################
     plt.figure(figsize=(7,4))
     ds_daily_clim['Extent'].plot()
-    plt.text(150, 4, 'Climate-Plots.github.io',
+    plt.text(50, 8, 'Climate-Plots.github.io',
         fontsize=12, color='black')
-    plt.savefig('../assets/img/Ant_SIE_climatology.png', dpi=200, bbox_inches='tight')
+    plt.savefig('../assets/img/Arctic_SIE_climatology.png', dpi=200, bbox_inches='tight')
     plt.close()
 
 
@@ -110,9 +110,9 @@ def plot_Ant_SIE():
     # plt.axis('off')
     # fig = plt.gcf()
     # fig.axes.get_yaxis().set_visible(False)
-    plt.text(np.datetime64('2005-01-01'), -2.5, 'Climate-Plots.github.io',
+    plt.text(np.datetime64('1985-01-01'), -2.5, 'Climate-Plots.github.io',
         fontsize=12, color='black')
-    plt.savefig('../assets/img/Ant_SIE_anom.png', dpi=300, bbox_inches='tight')
+    plt.savefig('../assets/img/Arctic_SIE_anom.png', dpi=300, bbox_inches='tight')
     plt.close()
 
 
@@ -135,7 +135,7 @@ def plot_Ant_SIE():
     plt.xlim(-10,376)
     plt.text(2, -2.8, 'Climate-Plots.github.io',
         fontsize=12, color='black')
-    plt.savefig('../assets/img/Ant_SIE_year_anoms.png', bbox_inches='tight', dpi=200)
+    plt.savefig('../assets/img/Arctic_SIE_year_anoms.png', bbox_inches='tight', dpi=200)
     plt.close()
 
 
@@ -170,8 +170,8 @@ def plot_Ant_SIE():
     plt.xticks(np.linspace(15,380,13)[:-1], calendar.month_name[1:], rotation=90)
     plt.hlines(0,-10,376)
     plt.xlim(-10,376)
-    plt.savefig('../assets/img/Ant_SIE_year_anoms_standardised.png', bbox_inches='tight', dpi=200)
+    plt.savefig('../assets/img/Arctic_SIE_year_anoms_standardised.png', bbox_inches='tight', dpi=200)
 
 if __name__ == '__main__':
-    plot_Ant_SIE()
+    plot_Arctic_SIE()
 
