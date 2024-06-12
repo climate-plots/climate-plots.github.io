@@ -39,7 +39,11 @@ possible_graphs = [{'name':'AMO', 'image_path':'assets/img/AMO.png',
                    {'name':'IPO', 'image_path':'assets/img/IPO.png',
                         'text':'The Interdecadal Pacific Oscillation'},
                    {'name':'SAM_annual', 'image_path':'assets/img/SAM_annual.png',
-                        'text':'The Southern Annular Mode, annual average'}]
+                        'text':'The Southern Annular Mode, annual average'},
+                   {'name':'SOI', 'image_path':'assets/img/SOI.png',
+                        'text':'The Southern Oscillation index describes El Niño and La Niña events'},
+                   {'name':'SST', 'image_path':'assets/img/SST.png',
+                        'text':'Global average sea surface temperature'}]
 
 
 def pick_a_graph():
