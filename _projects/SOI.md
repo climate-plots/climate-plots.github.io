@@ -8,7 +8,7 @@ category: atmosphere
 related_publications: true
 ---
 
-The Southern Oscillation index. Data downloaded from [https://www.ncei.noaa.gov/access/monitoring/enso/soi](https://www.ncei.noaa.gov/access/monitoring/enso/soi).
+The Southern Oscillation index describes El Niño and La Niña events. Data downloaded from [https://www.ncei.noaa.gov/access/monitoring/enso/soi](https://www.ncei.noaa.gov/access/monitoring/enso/soi).
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
