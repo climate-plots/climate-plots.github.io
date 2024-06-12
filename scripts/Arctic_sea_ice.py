@@ -96,7 +96,7 @@ def plot_Arctic_SIE():
                vmin= ds_anoms['Extent'].rolling(Date=window).mean().min(),
                vmax= ds_anoms['Extent'].rolling(Date=window).mean().max())
 
-    plt.text(np.datetime64('1978-09-01'), 2.45,'Antarctic Sea Ice Extent Anomaly', fontsize=20, weight='bold')
+    plt.text(np.datetime64('1978-09-01'), 2.45,'Arctic Sea Ice Extent Anomaly', fontsize=20, weight='bold')
     plt.text(np.datetime64('1978-09-01'), 2,'Relative to 1981-2010 ($10^{6}$ km$^{2}$)', fontsize=15)
     plt.ylabel('')
     plt.xlabel('')
