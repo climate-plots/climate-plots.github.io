@@ -14,17 +14,17 @@ def set_multiline_output(name, value):
         print(value, file=fh)
         print(delimiter, file=fh)
 
-possible_graphs = [{'name':'AMO', 'image_path':'assets/img/AMO.png',
+possible_graphs = [{'name':'AMO', 'image_path':'AMO.png',
                         'text':'The Atlantic Multidecadal Oscillation'},
-                   {'name':'Ant_SIE_anom', 'image_path':'assets/img/Ant_SIE_anom.png',
+                   {'name':'Ant_SIE_anom', 'image_path':'Ant_SIE_anom.png',
                         'text':'Antarctic sea ice extent anomaly'},
-                   {'name':'Ant_SIE_climatology', 'image_path':'assets/img/Ant_SIE_climatology.png',
+                   {'name':'Ant_SIE_climatology', 'image_path':'Ant_SIE_climatology.png',
                         'text':'Antarctic sea ice extent climatology'},
-                   {'name':'Ant_SIE_year_anoms', 'image_path':'assets/img/Ant_SIE_year_anoms.png',
+                   {'name':'Ant_SIE_year_anoms', 'image_path':'Ant_SIE_year_anoms.png',
                         'text':'Antarctic sea ice extent anomalies, by year'},
-                   {'name':'IPO', 'image_path':'assets/img/IPO.png',
+                   {'name':'IPO', 'image_path':'IPO.png',
                         'text':'The Interdecadal Pacific Oscillation'},
-                   {'name':'SAM_annual', 'image_path':'assets/img/SAM_annual.png',
+                   {'name':'SAM_annual', 'image_path':'SAM_annual.png',
                         'text':'The Southern Annular Mode, annual average'}]
 
 
