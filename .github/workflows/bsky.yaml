@@ -27,6 +27,7 @@ jobs:
 
       - uses: myConsciousness/bluesky-post@v5
         with:
+          working-directory: ./assets/img
           text: ${{ steps.pick_graph.outputs.text }}
           media: ${{ steps.pick_graph.outputs.image_path }}
           media-alt: ${{ steps.pick_graph.outputs.text }}
