@@ -1,6 +1,7 @@
 import numpy as np
 import pooch
 import matplotlib.pyplot as plt
+import matplotlib
 import xarray as xr
 import pandas as pd
 import datetime
@@ -23,11 +24,56 @@ def plot_Ant_SIE():
     df_SIE['Date'] = pd.to_datetime(df_SIE[['Year','Month','Day']])
     df_SIE.set_index('Date', inplace=True)
 
+    # get total number of years in dataset to use later on
+    years = list(df_SIE.index.year.unique())
+
+    # define a colourmap over all the years
+    cmap = matplotlib.cm.YlOrRd(np.linspace(0,1,len(years)))
+
     # convert to xarray because I'm more comfortable with that
     ds = xr.Dataset.from_dataframe(df_SIE)
 
     # calculate daily climatology
-    ds_daily_clim =ds.sel(Date=slice('1981-01-01','2010-12-31')).groupby('Date.dayofyear').mean()
+    # smooth over two days to deal with two-daily observations in
+    # beginning of record
+    ds_daily_clim =ds.sel(Date=slice('1981-01-01',
+            '2010-12-31')).groupby('Date.dayofyear').mean(
+            ).rolling(dayofyear=2).mean()
+
+    # calculate daily anomalies
+    ds_anoms = ds.groupby('Date.dayofyear') - ds_daily_clim
+
+    # Calculate standard deviations for anomalies
+    ds_std = ds.sel(Date=slice('1981-01-01','2010-12-31')).groupby(
+    ds.sel(Date=slice('1981-01-01','2010-12-31')).Date.dt.dayofyear).std()
+
+    ds_anoms_std = ds_anoms.groupby(ds_anoms.Date.dt.dayofyear)/ds_std
+
+
+    # plot each year of data on top of each other
+    ##############################################
+
+    plt.figure(figsize=(10,5))
+
+    for i, year in enumerate(range(1978, today.year+1)):
+        ds_year = ds.Extent.sel(Date=slice('{0}-01-01'.format(year),
+                                '{0}-12-31'.format(year))).rolling(Date=7).mean()
+        # ds_year.plot(color=cmap[i])
+        plt.plot(pd.DatetimeIndex(ds_year.Date).dayofyear, ds_year, color=cmap[i])
+
+    plt.plot(pd.DatetimeIndex(ds_year.Date).dayofyear, ds_year, color='k', linewidth=3)
+
+
+    plt.pcolormesh([-20,-15], [0,1], [[1978, 2000],[2000,today.year]], cmap='YlOrRd')
+    CB = plt.colorbar()
+    CB.ax.set_ylabel('Year', fontsize=30)
+
+    plt.text(float(pd.DatetimeIndex(ds_year.Date).dayofyear[-1]), ds_year[-1].data-2, str(today.year), fontsize='large')
+
+    plt.ylabel('Sea Ice Extent\n(millions of square kilometres)')
+    plt.xticks(np.linspace(15,380,13)[:-1], calendar.month_name[1:], rotation=90)
+    plt.xlim(-10,376)
+    plt.savefig('../assets/img/Ant_SIE_by_year.png', bbox_inches='tight', dpi=200)
 
     # plot daily climatology
     ########################
@@ -38,8 +84,6 @@ def plot_Ant_SIE():
     plt.savefig('../assets/img/Ant_SIE_climatology.png', dpi=200, bbox_inches='tight')
     plt.close()
 
-    # calculate daily anomalies
-    ds_anoms = ds.groupby('Date.dayofyear') - ds_daily_clim
 
     # plot daily anomalies
     ######################
@@ -93,6 +137,40 @@ def plot_Ant_SIE():
         fontsize=12, color='black')
     plt.savefig('../assets/img/Ant_SIE_year_anoms.png', bbox_inches='tight', dpi=200)
     plt.close()
+
+
+    # Plot anomalies by standard deviation
+    ######################################
+
+    plt.figure(figsize=(10,5))
+
+    for i, year in enumerate(range(1978, today.year+1)):
+        ds_year = ds_anoms_std.sel(Date=slice('{0}-01-01'.format(year),
+                                '{0}-12-31'.format(year)))
+        ds_year_dayofyear = ds_anoms.sel(Date=slice('{0}-01-01'.format(year),
+                                '{0}-12-31'.format(year)))
+        # ds_year.Extent.plot(color=cmap[i])
+        plt.plot(ds_year_dayofyear.Date.dayofyear,
+                 (ds_year.swap_dims({'Date': 'dayofyear'}).Extent).rolling(dayofyear=5).mean(),
+                 color=cmap[i])
+
+    plt.plot(ds_year_dayofyear.Date.dayofyear,
+             (ds_year.swap_dims({'Date': 'dayofyear'}).Extent).rolling(dayofyear=5).mean(),
+             color='k', linewidth=3)
+
+    plt.pcolormesh([-20,-15], [0,1], [[1978, 2000],[2000,today.year]], cmap='YlOrRd')
+    CB = plt.colorbar()
+    CB.ax.set_ylabel('Year', fontsize=30)
+
+    plt.text(ds_year_dayofyear.dayofyear[-1].data+ 10,
+             (ds_year.swap_dims({'Date': 'dayofyear'}).Extent).rolling(dayofyear=5).mean()[-1].data,
+             str(today.year), fontsize='large')
+
+    plt.ylabel('Sea Ice Extent anomaly\n(Standard deviations from the 1981-2010 climatology)')
+    plt.xticks(np.linspace(15,380,13)[:-1], calendar.month_name[1:], rotation=90)
+    plt.hlines(0,-10,376)
+    plt.xlim(-10,376)
+    plt.savefig('../assets/img/Ant_SIE_year_anoms_standardised.png', bbox_inches='tight', dpi=200)
 
 if __name__ == '__main__':
     plot_Ant_SIE()
