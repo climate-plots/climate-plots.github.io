@@ -89,5 +89,8 @@ def pick_a_graph():
     set_output(name='text',
                 value=possible_graphs[graph]['text'])
 
+    set_output(name='media_alt',
+                value=possible_graphs[graph]['media_alt'])
+
 if __name__ == '__main__':
     pick_a_graph()
