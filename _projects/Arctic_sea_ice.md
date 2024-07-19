@@ -8,7 +8,7 @@ category: sea-ice
 related_publications: true
 ---
 
-Arctic sea ice extent.
+Arctic sea ice extent. Data available from [NSIDC](https://nsidc.org/data/g02135/versions/3) {% cite Fetterer2017 %}.
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
