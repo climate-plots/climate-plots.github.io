@@ -31,6 +31,6 @@ jobs:
         with:
           text: ${{ steps.pick_graph.outputs.text }}
           media: ${{ steps.pick_graph.outputs.image_path }}
-          media-alt: ${{ steps.pick_graph.outputs.text }}
+          media-alt: ${{ steps.pick_graph.outputs.media_alt }}
           identifier: ${{ secrets.BSKY_IDENTIFIER }}
           password: ${{ secrets.BSKY_PASSWORD }}
