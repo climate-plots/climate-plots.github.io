@@ -70,6 +70,9 @@ def plot_Ant_SIE():
 
     plt.text(float(pd.DatetimeIndex(ds_year.Date).dayofyear[-1]), ds_year[-1].data-2, str(today.year), fontsize='large')
 
+    plt.text(15, 0.3, 'Climate-Plots.github.io',
+        fontsize=12, color='black')
+
     plt.ylabel('Sea Ice Extent\n(millions of square kilometres)')
     plt.xticks(np.linspace(15,380,13)[:-1], calendar.month_name[1:], rotation=90)
     plt.xlim(-10,376)
@@ -110,8 +113,8 @@ def plot_Ant_SIE():
     # plt.axis('off')
     # fig = plt.gcf()
     # fig.axes.get_yaxis().set_visible(False)
-    plt.text(np.datetime64('2005-01-01'), -2.5, 'Climate-Plots.github.io',
-        fontsize=12, color='black')
+    plt.text(np.datetime64('1990-01-01'), -2.5, 'Climate-Plots.github.io',
+        fontsize=15, color='black')
     plt.savefig('../assets/img/Ant_SIE_anom.png', dpi=300, bbox_inches='tight')
     plt.close()
 
@@ -170,6 +173,8 @@ def plot_Ant_SIE():
     plt.xticks(np.linspace(15,380,13)[:-1], calendar.month_name[1:], rotation=90)
     plt.hlines(0,-10,376)
     plt.xlim(-10,376)
+    plt.text(2, -7, 'Climate-Plots.github.io',
+    fontsize=12, color='black')
     plt.savefig('../assets/img/Ant_SIE_year_anoms_standardised.png', bbox_inches='tight', dpi=200)
 
 if __name__ == '__main__':

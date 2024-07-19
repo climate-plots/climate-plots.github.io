@@ -8,7 +8,7 @@ import datetime
 import calendar
 
 
-def plot_Arctic_SIE():
+def plot_global_sea_ice():
 
     today = datetime.date.today()
 
@@ -18,11 +18,25 @@ def plot_Arctic_SIE():
         path='./'
     )
 
-    df_SIE = pd.read_csv(fname_sie_N, skipinitialspace=True, header=[0],skiprows=[1])
+    df_SIE_N = pd.read_csv(fname_sie_N, skipinitialspace=True, header=[0],skiprows=[1])
 
     # convert to proper datetime index
-    df_SIE['Date'] = pd.to_datetime(df_SIE[['Year','Month','Day']])
-    df_SIE.set_index('Date', inplace=True)
+    df_SIE_N['Date'] = pd.to_datetime(df_SIE_N[['Year','Month','Day']])
+    df_SIE_N.set_index('Date', inplace=True)
+
+    fname_sie_S = pooch.retrieve(
+        url="ftp://sidads.colorado.edu/pub/DATASETS/NOAA/G02135/south/daily/data/S_seaice_extent_daily_v3.0.csv",
+        known_hash=None,
+        path='./'
+    )
+
+    df_SIE_S = pd.read_csv(fname_sie_S, skipinitialspace=True, header=[0],skiprows=[1])
+
+    # convert to proper datetime index
+    df_SIE_S['Date'] = pd.to_datetime(df_SIE_S[['Year','Month','Day']])
+    df_SIE_S.set_index('Date', inplace=True)
+
+    df_SIE = df_SIE_N + df_SIE_S
 
     # get total number of years in dataset to use later on
     years = list(df_SIE.index.year.unique())
@@ -70,21 +84,22 @@ def plot_Arctic_SIE():
 
     plt.text(float(pd.DatetimeIndex(ds_year.Date).dayofyear[-1]), ds_year[-1].data-2, str(today.year), fontsize='large')
 
-    plt.text(15, 0.3, 'Climate-Plots.github.io',
-        fontsize=12, color='black')
+    plt.text(15, 14.5, 'Climate-Plots.github.io',
+        fontsize=13, color='black')
 
     plt.ylabel('Sea Ice Extent\n(millions of square kilometres)')
     plt.xticks(np.linspace(15,380,13)[:-1], calendar.month_name[1:], rotation=90)
     plt.xlim(-10,376)
-    plt.savefig('../assets/img/Arctic_SIE_by_year.png', bbox_inches='tight', dpi=200)
+    plt.ylim(14,29)
+    plt.savefig('../assets/img/Global_sea_ice_by_year.png', bbox_inches='tight', dpi=200)
 
     # plot daily climatology
     ########################
     plt.figure(figsize=(7,4))
     ds_daily_clim['Extent'].plot()
-    plt.text(50, 8, 'Climate-Plots.github.io',
+    plt.text(150, 19, 'Climate-Plots.github.io',
         fontsize=12, color='black')
-    plt.savefig('../assets/img/Arctic_SIE_climatology.png', dpi=200, bbox_inches='tight')
+    plt.savefig('../assets/img/Global_sea_ice_climatology.png', dpi=200, bbox_inches='tight')
     plt.close()
 
 
@@ -99,13 +114,13 @@ def plot_Arctic_SIE():
                vmin= ds_anoms['Extent'].rolling(Date=window).mean().min(),
                vmax= ds_anoms['Extent'].rolling(Date=window).mean().max())
 
-    plt.text(np.datetime64('1978-09-01'), 2.45,'Arctic Sea Ice Extent Anomaly', fontsize=20, weight='bold')
-    plt.text(np.datetime64('1978-09-01'), 2,'Relative to 1981-2010 ($10^{6}$ km$^{2}$)', fontsize=15)
+    plt.text(np.datetime64('1978-09-01'), 3.45,'Global Sea Ice Extent Anomaly', fontsize=20, weight='bold')
+    plt.text(np.datetime64('1978-09-01'), 3,'Relative to 1981-2010 ($10^{6}$ km$^{2}$)', fontsize=15)
     plt.ylabel('')
     plt.xlabel('')
 
     plt.xlim(np.datetime64('1978-05-01'), np.datetime64('2025-01-01'))
-
+    plt.ylim(-5,2.5)
     # ax = plt.gca()
     # ax.spines[['right', 'top']].set_visible(False)
     # # ax.tick_params(axis='x', which='both', length=0)
@@ -113,9 +128,9 @@ def plot_Arctic_SIE():
     # plt.axis('off')
     # fig = plt.gcf()
     # fig.axes.get_yaxis().set_visible(False)
-    plt.text(np.datetime64('1985-01-01'), -2.5, 'Climate-Plots.github.io',
+    plt.text(np.datetime64('1985-01-01'), -4.5, 'Climate-Plots.github.io',
         fontsize=15, color='black')
-    plt.savefig('../assets/img/Arctic_SIE_anom.png', dpi=300, bbox_inches='tight')
+    plt.savefig('../assets/img/Global_sea_ice_anom.png', dpi=300, bbox_inches='tight')
     plt.close()
 
 
@@ -136,9 +151,9 @@ def plot_Arctic_SIE():
     plt.xticks(np.linspace(15,380,13)[:-1], calendar.month_name[1:], rotation=90)
     plt.hlines(0,-10,376, color='k')
     plt.xlim(-10,376)
-    plt.text(2, -2.8, 'Climate-Plots.github.io',
+    plt.text(2, -4.5, 'Climate-Plots.github.io',
         fontsize=12, color='black')
-    plt.savefig('../assets/img/Arctic_SIE_year_anoms.png', bbox_inches='tight', dpi=200)
+    plt.savefig('../assets/img/Global_sea_ice_year_anoms.png', bbox_inches='tight', dpi=200)
     plt.close()
 
 
@@ -173,10 +188,10 @@ def plot_Arctic_SIE():
     plt.xticks(np.linspace(15,380,13)[:-1], calendar.month_name[1:], rotation=90)
     plt.hlines(0,-10,376)
     plt.xlim(-10,376)
-    plt.text(2, -5, 'Climate-Plots.github.io',
+    plt.text(2, -6.5, 'Climate-Plots.github.io',
     fontsize=12, color='black')
-    plt.savefig('../assets/img/Arctic_SIE_year_anoms_standardised.png', bbox_inches='tight', dpi=200)
+    plt.savefig('../assets/img/Global_sea_ice_year_anoms_standardised.png', bbox_inches='tight', dpi=200)
 
 if __name__ == '__main__':
-    plot_Arctic_SIE()
+    plot_global_sea_ice()
 
