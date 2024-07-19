@@ -12,13 +12,13 @@ def plot_Arctic_SIE():
 
     today = datetime.date.today()
 
-    fname_sie_S = pooch.retrieve(
+    fname_sie_N = pooch.retrieve(
         url="ftp://sidads.colorado.edu/pub/DATASETS/NOAA/G02135/north/daily/data/N_seaice_extent_daily_v3.0.csv",
         known_hash=None,
         path='./'
     )
 
-    df_SIE = pd.read_csv(fname_sie_S, skipinitialspace=True, header=[0],skiprows=[1])
+    df_SIE = pd.read_csv(fname_sie_N, skipinitialspace=True, header=[0],skiprows=[1])
 
     # convert to proper datetime index
     df_SIE['Date'] = pd.to_datetime(df_SIE[['Year','Month','Day']])
@@ -70,6 +70,9 @@ def plot_Arctic_SIE():
 
     plt.text(float(pd.DatetimeIndex(ds_year.Date).dayofyear[-1]), ds_year[-1].data-2, str(today.year), fontsize='large')
 
+    plt.text(15, 0.3, 'Climate-Plots.github.io',
+        fontsize=12, color='black')
+
     plt.ylabel('Sea Ice Extent\n(millions of square kilometres)')
     plt.xticks(np.linspace(15,380,13)[:-1], calendar.month_name[1:], rotation=90)
     plt.xlim(-10,376)
@@ -111,7 +114,7 @@ def plot_Arctic_SIE():
     # fig = plt.gcf()
     # fig.axes.get_yaxis().set_visible(False)
     plt.text(np.datetime64('1985-01-01'), -2.5, 'Climate-Plots.github.io',
-        fontsize=12, color='black')
+        fontsize=15, color='black')
     plt.savefig('../assets/img/Arctic_SIE_anom.png', dpi=300, bbox_inches='tight')
     plt.close()
 
@@ -170,6 +173,8 @@ def plot_Arctic_SIE():
     plt.xticks(np.linspace(15,380,13)[:-1], calendar.month_name[1:], rotation=90)
     plt.hlines(0,-10,376)
     plt.xlim(-10,376)
+    plt.text(2, -5, 'Climate-Plots.github.io',
+    fontsize=12, color='black')
     plt.savefig('../assets/img/Arctic_SIE_year_anoms_standardised.png', bbox_inches='tight', dpi=200)
 
 if __name__ == '__main__':
