@@ -5,4 +5,4 @@ python Arctic_sea_ice.py
 python global_sea_ice.py
 python SOI.py
 python AMO.py
-python SST.py
+# python SST.py
