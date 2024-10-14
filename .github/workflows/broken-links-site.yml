@@ -1,9 +1,9 @@
 name: Check for broken links on site
 
 on:
-  workflow_run:
-    workflows: [Deploy site]
-    types: [completed]
+  # workflow_run:
+  #   workflows: [Deploy site]
+  #   types: [completed]
 
 jobs:
   check-links-on-site:
