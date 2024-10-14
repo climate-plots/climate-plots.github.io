@@ -90,14 +90,16 @@ def plot_Ant_SIE():
 
     # plot daily anomalies
     ######################
+    color_lim = np.max([-ds_anoms['Extent'].rolling(Date=window).mean().min(),
+                    ds_anoms['Extent'].rolling(Date=window).mean().max()])
+
     plt.figure(figsize=(13,5))
     window=7
     ds_anoms.Extent.rolling(Date=window).mean().plot(color='k')
     plt.hlines(0, np.datetime64('1978-09-01'), np.datetime64('2024-05-01'), 'k')
     plt.scatter(ds_anoms['Date'], ds_anoms['Extent'].rolling(Date=window).mean(),
                 c=ds_anoms['Extent'].rolling(Date=window).mean(), cmap='RdBu', edgecolors=None,
-               vmin= ds_anoms['Extent'].rolling(Date=window).mean().min(),
-               vmax= ds_anoms['Extent'].rolling(Date=window).mean().max())
+               vmin= -color_lim, vmax= color_lim)
 
     plt.text(np.datetime64('1978-09-01'), 2.35,'Antarctic Sea Ice Extent Anomaly', fontsize=20, weight='bold')
     plt.text(np.datetime64('1978-09-01'), 1.9,'Relative to 1981-2010 ($10^{6}$ km$^{2}$)', fontsize=15)
