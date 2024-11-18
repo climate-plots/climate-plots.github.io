@@ -90,11 +90,11 @@ def plot_Ant_SIE():
 
     # plot daily anomalies
     ######################
+    window=7
     color_lim = np.max([-ds_anoms['Extent'].rolling(Date=window).mean().min(),
                     ds_anoms['Extent'].rolling(Date=window).mean().max()])
 
     plt.figure(figsize=(13,5))
-    window=7
     ds_anoms.Extent.rolling(Date=window).mean().plot(color='k')
     plt.hlines(0, np.datetime64('1978-09-01'), np.datetime64('2024-05-01'), 'k')
     plt.scatter(ds_anoms['Date'], ds_anoms['Extent'].rolling(Date=window).mean(),
