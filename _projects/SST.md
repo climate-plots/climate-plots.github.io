@@ -8,6 +8,8 @@ category: ocean
 related_publications: true
 ---
 
+NOT CURRENTLY BEING UPDATED DUE TO NOAA SERVER ISSUES.
+
 The temperature at the surface of the ocean is called the sea surface temperature. This plot shows the global average sea surface temperature.
 
 <div class="row">
