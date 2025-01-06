@@ -49,6 +49,8 @@ def plot_Ant_SIE():
 
     ds_anoms_std = ds_anoms.groupby(ds_anoms.Date.dt.dayofyear)/ds_std
 
+    # Harden script to work at beginining of year
+    window = np.min([7,df_SIE.index.dayofyear[-1]])
 
     # plot each year of data on top of each other
     ##############################################
@@ -57,7 +59,7 @@ def plot_Ant_SIE():
 
     for i, year in enumerate(range(1978, today.year+1)):
         ds_year = ds.Extent.sel(Date=slice('{0}-01-01'.format(year),
-                                '{0}-12-31'.format(year))).rolling(Date=7).mean()
+                                '{0}-12-31'.format(year))).rolling(Date=window).mean()
         # ds_year.plot(color=cmap[i])
         plt.plot(pd.DatetimeIndex(ds_year.Date).dayofyear, ds_year, color=cmap[i])
 
@@ -90,13 +92,13 @@ def plot_Ant_SIE():
 
     # plot daily anomalies
     ######################
-    window=7
     color_lim = np.max([-ds_anoms['Extent'].rolling(Date=window).mean().min(),
                     ds_anoms['Extent'].rolling(Date=window).mean().max()])
 
     plt.figure(figsize=(13,5))
     ds_anoms.Extent.rolling(Date=window).mean().plot(color='k')
-    plt.hlines(0, np.datetime64('1978-09-01'), np.datetime64('2024-05-01'), 'k')
+    plt.hlines(0, np.datetime64('1978-09-01'),
+                np.datetime64(today) + np.timedelta64(30, 'D'), 'k')
     plt.scatter(ds_anoms['Date'], ds_anoms['Extent'].rolling(Date=window).mean(),
                 c=ds_anoms['Extent'].rolling(Date=window).mean(), cmap='RdBu', edgecolors=None,
                vmin= -color_lim, vmax= color_lim)
@@ -106,7 +108,8 @@ def plot_Ant_SIE():
     plt.ylabel('')
     plt.xlabel('')
 
-    plt.xlim(np.datetime64('1978-05-01'), np.datetime64('2025-01-01'))
+    plt.xlim(np.datetime64('1978-05-01'),
+                np.datetime64(today) + np.timedelta64(180, 'D'))
 
     # ax = plt.gca()
     # ax.spines[['right', 'top']].set_visible(False)
@@ -127,7 +130,7 @@ def plot_Ant_SIE():
 
     for i, year in enumerate(range(1978, today.year+1)):
         ds_year = ds_anoms.sel(Date=slice('{0}-01-01'.format(year),
-                                '{0}-12-31'.format(year)))#.rolling(Date=7).mean()
+                                '{0}-12-31'.format(year)))
         plt.plot(ds_year.Date.dayofyear, ds_year.Extent, color='grey')
 
     plt.plot(ds_year.Date.dayofyear, ds_year.Extent, color='red', linewidth=3)
@@ -156,11 +159,11 @@ def plot_Ant_SIE():
                                 '{0}-12-31'.format(year)))
         # ds_year.Extent.plot(color=cmap[i])
         plt.plot(ds_year_dayofyear.Date.dayofyear,
-                 (ds_year.swap_dims({'Date': 'dayofyear'}).Extent).rolling(dayofyear=5).mean(),
+                 (ds_year.swap_dims({'Date': 'dayofyear'}).Extent).rolling(dayofyear=window).mean(),
                  color=cmap[i])
 
     plt.plot(ds_year_dayofyear.Date.dayofyear,
-             (ds_year.swap_dims({'Date': 'dayofyear'}).Extent).rolling(dayofyear=5).mean(),
+             (ds_year.swap_dims({'Date': 'dayofyear'}).Extent).rolling(dayofyear=window).mean(),
              color='k', linewidth=3)
 
     plt.pcolormesh([-20,-15], [0,1], [[1978, 2000],[2000,today.year]], cmap='YlOrRd')
@@ -168,7 +171,7 @@ def plot_Ant_SIE():
     CB.ax.set_ylabel('Year', fontsize=30)
 
     plt.text(ds_year_dayofyear.dayofyear[-1].data+ 10,
-             (ds_year.swap_dims({'Date': 'dayofyear'}).Extent).rolling(dayofyear=5).mean()[-1].data,
+             (ds_year.swap_dims({'Date': 'dayofyear'}).Extent).rolling(dayofyear=window).mean()[-1].data,
              str(today.year), fontsize='large')
 
     plt.ylabel('Sea Ice Extent anomaly\n(Standard deviations from the 1981-2010 climatology)')
