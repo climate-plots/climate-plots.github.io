@@ -2,20 +2,11 @@
 # Site settings
 # -----------------------------------------------------------------------------
 
-<<<<<<< HEAD
-title: blank # the website title (if blank, full name will be used instead)
-first_name: You
-middle_name: R.
-last_name: Name
-contact_note: >
-  You can even add a little note about which of these is the best way to reach you.
-=======
 title: Climate Plots # the website title (if blank, full name will be used instead)
 first_name: Climate
 middle_name:
 last_name: Plots
 email: edward.doddridge@utas.edu.au
->>>>>>> 8f138282 (Add plotting scripts and automate running them (#1))
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
   Automatically updated plots about the climate.
 footer_text: >
@@ -76,8 +67,7 @@ serve_schema_org: false # Include Schema.org in the HTML head
 og_image: # The site-wide (default for all links) Open Graph preview image
 
 # -----------------------------------------------------------------------------
-<<<<<<< HEAD
-=======
+
 # Social integration
 # -----------------------------------------------------------------------------
 
@@ -125,7 +115,6 @@ contact_note: #>
 #  You can even add a little note about which of these is the best way to reach you.
 
 # -----------------------------------------------------------------------------
->>>>>>> 8f138282 (Add plotting scripts and automate running them (#1))
 # Analytics and search engine verification
 # -----------------------------------------------------------------------------
 
@@ -179,28 +168,9 @@ disqus_shortname: al-folio # put your disqus shortname
 # External sources.
 # If you have blog posts published on medium.com or other external sources,
 # you can display them in your blog by adding a link to the RSS feed.
-<<<<<<< HEAD
-external_sources:
-  - name: medium.com
-    rss_url: https://medium.com/@al-folio/feed
-  - name: Google Blog
-    posts:
-      - url: https://blog.google/technology/ai/google-gemini-update-flash-ai-assistant-io-2024/
-        published_date: 2024-05-14
-
-# -----------------------------------------------------------------------------
-# Newsletter
-# -----------------------------------------------------------------------------
-
-newsletter:
-  enabled: false
-  endpoint: # your loops endpoint (e.g., https://app.loops.so/api/newsletter-form/YOUR-ENDPOINT)
-  # https://loops.so/docs/forms/custom-form
-=======
 # external_sources:
 #   - name: medium.com
 #     rss_url: https://medium.com/@al-folio/feed
->>>>>>> 8f138282 (Add plotting scripts and automate running them (#1))
 
 # -----------------------------------------------------------------------------
 # Collections
