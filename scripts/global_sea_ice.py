@@ -108,7 +108,8 @@ def plot_global_sea_ice():
     plt.figure(figsize=(13,5))
     window=7
     ds_anoms.Extent.rolling(Date=window).mean().plot(color='k')
-    plt.hlines(0, np.datetime64('1978-09-01'), np.datetime64('2024-05-01'), 'k')
+    plt.hlines(0, np.datetime64('1978-09-01'),
+                np.datetime64(today) + np.timedelta64(30, 'D'), 'k')
     plt.scatter(ds_anoms['Date'], ds_anoms['Extent'].rolling(Date=window).mean(),
                 c=ds_anoms['Extent'].rolling(Date=window).mean(), cmap='RdBu', edgecolors=None,
                vmin= ds_anoms['Extent'].rolling(Date=window).mean().min(),
@@ -119,7 +120,8 @@ def plot_global_sea_ice():
     plt.ylabel('')
     plt.xlabel('')
 
-    plt.xlim(np.datetime64('1978-05-01'), np.datetime64('2025-01-01'))
+    plt.xlim(np.datetime64('1978-05-01'),
+                np.datetime64(today) + np.timedelta64(180, 'D'))
     plt.ylim(-5,2.5)
     # ax = plt.gca()
     # ax.spines[['right', 'top']].set_visible(False)
