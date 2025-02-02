@@ -82,7 +82,7 @@ jobs:
           python-version: "3.13"
           cache: "pip" # caching pip dependencies
       - name: Download all workflow run artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
       - name: Make the script files executable
         run: chmod +x ./run_python_scripts.sh
         working-directory: ./scripts
