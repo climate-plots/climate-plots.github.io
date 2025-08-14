@@ -13,7 +13,7 @@ def plot_Arctic_SIE():
     today = datetime.date.today()
 
     fname_sie_N = pooch.retrieve(
-        url="ftp://sidads.colorado.edu/pub/DATASETS/NOAA/G02135/north/daily/data/N_seaice_extent_daily_v3.0.csv",
+        url="https://noaadata.apps.nsidc.org/NOAA/G02135/north/daily/data/N_seaice_extent_daily_v4.0.csv",
         known_hash=None,
         path='./'
     )
