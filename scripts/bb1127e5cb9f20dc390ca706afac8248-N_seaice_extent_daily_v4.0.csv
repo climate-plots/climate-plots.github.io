@@ -15460,3 +15460,5 @@ YYYY,    MM,  DD, 10^6 sq km, 10^6 sq km, Source data product web sites: http://
 2025,    08,  28,      4.809,      0.000, ['/disks/sidads_ftp/DATASETS/nsidc0803_polar_stereo_seaice/NSIDC-0803_SEAICE_AMSR2_N_20250828_V1.0.bin']
 2025,    08,  29,      4.828,      0.000,"['/disks/sidads_ftp/DATASETS/nsidc0803_polar_stereo_seaice/NSIDC-0803_SEAICE_AMSR2_N_20250828_V1.0.bin', '/disks/sidads_ftp/DATASETS/nsidc0803_polar_stereo_seaice/NSIDC-0803_SEAICE_AMSR2_N_20250829_V1.0.bin', '/disks/sidads_ftp/DATASETS/nsidc0803_polar_stereo_seaice/NSIDC-0803_SEAICE_AMSR2_N_20250830_V1.0.bin']"
 2025,    08,  30,      4.916,      0.000, ['/disks/sidads_ftp/DATASETS/nsidc0803_polar_stereo_seaice/NSIDC-0803_SEAICE_AMSR2_N_20250830_V1.0.bin']
+2025,    08,  31,      4.836,      0.000,"['/disks/sidads_ftp/DATASETS/nsidc0803_polar_stereo_seaice/NSIDC-0803_SEAICE_AMSR2_N_20250830_V1.0.bin', '/disks/sidads_ftp/DATASETS/nsidc0803_polar_stereo_seaice/NSIDC-0803_SEAICE_AMSR2_N_20250901_V1.0.bin']"
+2025,    09,  01,      4.746,      0.000, ['/disks/sidads_ftp/DATASETS/nsidc0803_polar_stereo_seaice/NSIDC-0803_SEAICE_AMSR2_N_20250901_V1.0.bin']
