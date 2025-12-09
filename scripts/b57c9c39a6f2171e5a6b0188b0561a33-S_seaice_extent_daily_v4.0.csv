@@ -15559,3 +15559,4 @@ YYYY,    MM,  DD, 10^6 sq km, 10^6 sq km, Source data product web sites: http://
 2025,    12,  05,     11.494,      0.000, ['/disks/sidads_ftp/DATASETS/nsidc0803_daily_a2_seaice_conc_v2/NSIDC-0803_SEAICE_AMSR2_S_20251205_v2.0.nc']
 2025,    12,  06,     11.347,      0.000, ['/disks/sidads_ftp/DATASETS/nsidc0803_daily_a2_seaice_conc_v2/NSIDC-0803_SEAICE_AMSR2_S_20251206_v2.0.nc']
 2025,    12,  07,     11.153,      0.000, ['/disks/sidads_ftp/DATASETS/nsidc0803_daily_a2_seaice_conc_v2/NSIDC-0803_SEAICE_AMSR2_S_20251207_v2.0.nc']
+2025,    12,  08,     10.943,      0.000, ['/disks/sidads_ftp/DATASETS/nsidc0803_daily_a2_seaice_conc_v2/NSIDC-0803_SEAICE_AMSR2_S_20251208_v2.0.nc']
